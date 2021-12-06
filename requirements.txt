@@ -1,0 +1,8 @@
+pytest
+ipython
+pytest
+pytest-cov
+pytest-xdist
+python-dateutil
+pytz
+bresenham

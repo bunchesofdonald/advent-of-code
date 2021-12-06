@@ -1,0 +1,19 @@
+version: '3'
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: '/src/'
+    entrypoint: '/usr/local/bin/py.test'
+    restart: 'no'
+    volumes:
+    - ./:/src/
+  exec:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: '/usr/local/bin/python'
+    restart: 'no'
+    volumes:
+    - ./:/src/
