@@ -1,10 +1,11 @@
 from collections import defaultdict
 
 
+SPAWN_AGE = -1
+
+
 def parse_input(input):
-    return [
-        int(number) for number in input.split(',')
-    ]
+    return [int(number) for number in input.split(',')]
 
 
 def spawn_laternfish(starting_fish, days=80):
@@ -20,10 +21,10 @@ def spawn_laternfish(starting_fish, days=80):
             fish_by_age[next_age] = fish_by_age[age]
             fish_by_age[age] = 0
 
-        if count_at_spawn_age := fish_by_age.get(-1):
+        if count_at_spawn_age := fish_by_age.get(SPAWN_AGE):
             fish_by_age[8] = count_at_spawn_age
             fish_by_age[6] += count_at_spawn_age
-            fish_by_age[-1] = 0
+            fish_by_age[SPAWN_AGE] = 0
 
     return sum(fish_by_age.values())
 
