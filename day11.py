@@ -1,33 +1,13 @@
 import copy
 
+import utils
+
 
 def parse_input(lines):
     octopuses = []
     for line in lines:
         octopuses.append([int(energy) for energy in line.strip()])
     return octopuses
-
-
-def adjacent_points(x, y, size=10):
-    points = []
-    if x - 1 >= 0:
-        points.append((x - 1, y))
-    if x + 1 < size:
-        points.append((x + 1, y))
-    if y - 1 >= 0:
-        points.append((x, y - 1))
-    if y + 1 < size:
-        points.append((x, y + 1))
-    if x - 1 >= 0 and y - 1 >= 0:
-        points.append((x - 1, y - 1))
-    if x - 1 >= 0 and y + 1 < size:
-        points.append((x - 1, y + 1))
-    if x + 1 < size and y - 1 >= 0:
-        points.append((x + 1, y - 1))
-    if x + 1 < size and y + 1 < size:
-        points.append((x + 1, y + 1))
-
-    return points
 
 
 def flash_count(octopuses, n=100):
@@ -44,7 +24,7 @@ def flash_count(octopuses, n=100):
             count += 1
             x, y = to_flash.pop()
             octopuses[y][x] = 0
-            for other_x, other_y in adjacent_points(x, y):
+            for other_x, other_y in utils.adjacent_points(x, y):
                 if octopuses[other_y][other_x] > 0:
                     octopuses[other_y][other_x] += 1
                 if octopuses[other_y][other_x] > 9:
@@ -70,7 +50,7 @@ def synced_flash(octopuses):
             flash_count += 1
             x, y = to_flash.pop()
             octopuses[y][x] = 0
-            for other_x, other_y in adjacent_points(x, y):
+            for other_x, other_y in utils.adjacent_points(x, y):
                 if octopuses[other_y][other_x] > 0:
                     octopuses[other_y][other_x] += 1
                 if octopuses[other_y][other_x] > 9:

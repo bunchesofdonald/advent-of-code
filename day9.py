@@ -1,3 +1,6 @@
+import utils
+
+
 def parse_input(input):
     heightmap = []
     for line in input:
@@ -12,19 +15,15 @@ def find_low_points(heightmap):
 
     for y in range(height):
         for x in range(width):
-            adjacent_values = []
-
-            if x - 1 >= 0:
-                adjacent_values.append(heightmap[y][x - 1])
-
-            if x + 1 < width:
-                adjacent_values.append(heightmap[y][x + 1])
-
-            if y - 1 >= 0:
-                adjacent_values.append(heightmap[y - 1][x])
-
-            if y + 1 < height:
-                adjacent_values.append(heightmap[y + 1][x])
+            adjacent_values = [
+                heightmap[y][x]
+                for x, y in utils.adjacent_points(
+                    x, y,
+                    height=height,
+                    width=width,
+                    include_diagonals=False
+                )
+            ]
 
             if all(heightmap[y][x] < value for value in adjacent_values):
                 low_points[(x, y)] = heightmap[y][x] + 1
