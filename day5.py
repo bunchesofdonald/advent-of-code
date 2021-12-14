@@ -1,7 +1,6 @@
 from collections import defaultdict
 from bresenham import bresenham
 from dataclasses import dataclass
-import math
 
 
 @dataclass
