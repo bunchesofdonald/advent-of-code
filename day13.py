@@ -87,6 +87,7 @@ if __name__ == '__main__':
     for row in folded_paper:
         for col in row:
             counts[col] += 1
+    print(counts['#'])
 
     folded_paper = fold_paper(paper, folds)
     for row in folded_paper:
