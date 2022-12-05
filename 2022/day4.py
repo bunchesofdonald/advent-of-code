@@ -22,7 +22,8 @@ def do_sections_overlap(section_pair: tuple[set, set]) -> bool:
 
 def are_sections_contained(section_pair: tuple[set, set]) -> bool:
     first, second = section_pair
-    return first & second == second or first & second == first
+    intersection = first & second
+    return first == intersection or second == intersection
 
 
 def count_overlaps(sections: list[tuple[set, set]]) -> int:
