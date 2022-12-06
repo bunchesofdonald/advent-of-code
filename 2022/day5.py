@@ -24,7 +24,7 @@ def _read_crates(lines: list[str]) -> list[Stack]:
         if '[' not in line:
             break
 
-        for n in range(1, len(line), 4):
+        for n in range(1, len(line), 4):  # Crates are spaced 4 spaces apart.
             crate = line[n]
             if crate == ' ':
                 continue
@@ -58,7 +58,7 @@ def read_crates_and_procedures(lines: list[str]) -> tuple[list[Stack], list[Proc
     return crates, procedures
 
 
-def do_procedures(crates: list[Stack], procedures: list[Procedure], mode=9000):
+def do_procedures(crates: list[Stack], procedures: list[Procedure], mode: int = 9000):
     crates = copy.deepcopy(crates)
 
     for number, move_from, move_to in procedures:
